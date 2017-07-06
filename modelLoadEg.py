@@ -14,11 +14,16 @@ def ferEg():
 
 	img = testData[0:1]
 	print('shapeFer:', img[0].shape)
-	for i in range(1000):
-	#	cv2.imshow('FerImgChannelsFirst', np.reshape(img[0], img[0].shape[::-1]))
-		cv2.imshow('FerImgChannelsLast', testData[i])
-		print(testLabels[i])
-		if testLabels[i][4]==1 and cv2.waitKey(0) == 27:
+	for i in range(len(trainData)):
+		#cv2.imshow('FerImgChannelsFirst', np.reshape(img[0], img[0].shape[::-1]))
+		cv2.imshow('FerImgChannelsLast', trainData[i])
+		print(trainLabels[i])
+
+		# if testLabels[i][4]==1: #show specific emotion example
+		# if i in [0, 1, 2, 6458, 7629, 10423, 11286, 13148, 13402, 13988, 15894, 22198, 22927, 28601]: #black fer images
+		# 	print(i, trainLabels[i])
+		# 	cv2.imshow('ferImg', trainData[i])
+		if cv2.waitKey(0) == 27:
 			sys.exit(0) # esc to quit
 
 	#model = load_model('ferCNNChannelsFirst.h5')
@@ -85,7 +90,7 @@ def classifyFaceCamFer(modelName='WRN-28-4-Fer-Fin.h5'):
 			face = grey[y:y+h, x:x+w] #TODO: only does last face detected. Problem?. ALSO: img=colour, grey=greyscale
 			face = cv2.resize(face, (48, 48))
 			face = face.astype('float32')
-			face /= 255
+			face /= 255 #TODO: meanstd norm
 			cv2.imshow('Face', face)
 			face = np.reshape(face, (1, face.shape[0], face.shape[1], 1)) #reshape to 4d tensor
 			#print('shapeCam:', face.shape)
@@ -119,6 +124,6 @@ def classifyFaceCamFer(modelName='WRN-28-4-Fer-Fin.h5'):
 
 	del model
 
-#ferEg()
+ferEg()
 #cifarEg()
-classifyFaceCamFer(modelName=sys.argv[1])
+#classifyFaceCamFer(modelName=sys.argv[1])

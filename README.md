@@ -9,3 +9,7 @@ WRN-28-4: n=4 k=4
 
 To run camera: python3 modelLoadEg.py WRN-28-4-Fer-Fin.h5
 
+
+RESULTS:
+resultsFer has fer with no augmentation, no mean/std normalisation
+resultsFerMS has no augmentation, but does mean/std normalisation

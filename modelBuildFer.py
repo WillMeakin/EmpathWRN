@@ -22,17 +22,17 @@ print(testData.shape[0], 'test samples')
 wrn = 'WRN-28-4'
 n = sys.argv[1]
 k = sys.argv[2]
-# model = makeModel(trainData.shape[1:], #input shape (check channels_first/last)
-# 				  nClasses, #number of classes
-# 				  int(n), int(k))
-#
-# sgdOpt = SGD(lr=0.1, momentum=0.9, decay=0.0005, nesterov=True) #dampening == 0?
-#
-# model.compile(loss='categorical_crossentropy',
-#              optimizer=sgdOpt,
-#              metrics=['accuracy'])
+model = makeModel(trainData.shape[1:], #input shape (check channels_first/last)
+				  nClasses, #number of classes
+				  int(n), int(k))
 
-model = load_model('resultsWRN-28-4-Fer-E20Last.h5')
+sgdOpt = SGD(lr=0.1, momentum=0.9, decay=0.0005, nesterov=True) #dampening == 0?
+
+model.compile(loss='categorical_crossentropy',
+             optimizer=sgdOpt,
+             metrics=['accuracy'])
+
+#model = load_model('resultsWRN-28-4-Fer-E20.h5')
 for epochi in range(1, nEpochs+1):
 	if epochi % 20 == 0:
 		print('EPOCH:', epochi, 'of:', nEpochs)
@@ -42,8 +42,8 @@ for epochi in range(1, nEpochs+1):
 		print('\n\nmets: ', model.metrics_names)
 		print('evalResult: ', evalResult)
 
-		outStrTxt = 'results' + wrn + '-Fer-E' + str(epochi) + '.txt'
-		outStrh5 = 'results' + wrn + '-Fer-E' + str(epochi) + '.h5'
+		outStrTxt = 'results' + wrn + '-FerMS-E' + str(epochi) + '.txt'
+		outStrh5 = 'results' + wrn + '-FerMS-E' + str(epochi) + '.h5'
 		with open(outStrTxt, 'w') as f:
 			f.write(wrn + '-B(3,3)')
 			f.write('\nmets: ' + model.metrics_names[0] + ' ' + model.metrics_names[1])
@@ -97,11 +97,11 @@ evalResult = model.evaluate(testData, testLabels)
 
 print('\n\nmets: ', model.metrics_names)
 print('evalResult: ', evalResult)
-with open('resultsWRN-28-4-Fer-Fin.txt', 'w') as f:
+with open('results' + wrn + '-FerMS-E' + str(epochi) + '.txt', 'w') as f:
 	f.write('mets: ' + model.metrics_names[0] + ' ' + model.metrics_names[1])
 	f.write('\nevalResult: ' + str(evalResult[0]) + ' ' + str(evalResult[1]))
 
-model.save('WRN-28-4-Fer-Fin.h5')
+model.save('results' + wrn + '-FerMS-E' + str(epochi) + '.h5')
 print('model saved.')
 
 del model

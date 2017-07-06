@@ -57,15 +57,24 @@ def readCSV(fileName, rowDim, channels, useIDs=('Training', 'Validation', 'Test'
 	testData = np.asarray(testData)
 
 	print('channelMode: ', image_data_format(), ' trainData shape:', trainData.shape)
-	#print(trainData)
 
-	#Normalise #TODO: meanstd?
 	trainData = trainData.astype('float32')
 	validationData = validationData.astype('float32')
 	testData = testData.astype('float32')
 	trainData /= 255 #TODO: why not .0?
 	validationData /= 255
 	testData /= 255
+
+	#TODO: remove black fer images (std=0)
+	for imgi in range(len(trainData)):
+		if np.std(trainData[imgi]) != 0:
+			trainData[imgi] = (trainData[imgi]-np.mean(trainData[imgi]))**2/np.std(trainData[imgi])
+	for imgi in range(len(testData)):
+		if np.std(testData[imgi]) != 0:
+			testData[imgi] = (testData[imgi] - np.mean(testData[imgi])) ** 2 / np.std(testData[imgi])
+	for imgi in range(len(validationData)):
+		if np.std(validationData[imgi]) != 0:
+			validationData[imgi] = (validationData[imgi] - np.mean(validationData[imgi])) ** 2 / np.std(validationData[imgi])
 
 	print("Parsing finished.")
 
@@ -86,3 +95,7 @@ def readCSV(fileName, rowDim, channels, useIDs=('Training', 'Validation', 'Test'
 	return trainLabels, trainData, \
 		   validationLabels, validationData, \
 		   testLabels, testData
+
+if __name__ == '__main__':
+	data = readCSV('datasets/fer2013.csv', 48, 1, ('Training', 'PrivateTest', 'PublicTest'))
+

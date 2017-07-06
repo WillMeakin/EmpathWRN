@@ -1,0 +1,523 @@
+skyrei@skyrei-desktop:~/Projects/myKerasResnet$ python3 modelBuildFer.py 4 4
+Using TensorFlow backend.
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcublas.so.8.0 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcudnn.so.5 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcufft.so.8.0 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcuda.so.1 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcurand.so.8.0 locally
+Parsing:  datasets/fer2013.csv ...
+row:  1000
+row:  2000
+row:  3000
+row:  4000
+row:  5000
+row:  6000
+row:  7000
+row:  8000
+row:  9000
+row:  10000
+row:  11000
+row:  12000
+row:  13000
+row:  14000
+row:  15000
+row:  16000
+row:  17000
+row:  18000
+row:  19000
+row:  20000
+row:  21000
+row:  22000
+row:  23000
+row:  24000
+row:  25000
+row:  26000
+row:  27000
+row:  28000
+row:  29000
+row:  30000
+row:  31000
+row:  32000
+row:  33000
+row:  34000
+row:  35000
+channelMode:  channels_last  trainData shape: (28709, 48, 48, 1)
+Parsing finished.
+traindatsize:  264.582288
+validatisize:  33.076368
+testdatasize:  33.076368
+trainLabsize:  1.607816
+valiLabisize:  0.201096
+testLabasize:  0.201096
+total: MB 332.745032
+trainData shape: (28709, 48, 48, 1)
+28709 train samples
+3589 test samples
+inShape: (48, 48, 1)
+width: 64
+width: 64
+width: 64
+width: 64
+width: 128
+width: 128
+width: 128
+width: 128
+width: 256
+width: 256
+width: 256
+width: 256
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE3 instructions, but these are available on your machine and could speed up CPU computations.
+W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:910] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:885] Found device 0 with properties: 
+name: GeForce GTX 970
+major: 5 minor: 2 memoryClockRate (GHz) 1.228
+pciBusID 0000:01:00.0
+Total memory: 3.94GiB
+Free memory: 3.33GiB
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:906] DMA: 0 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:916] 0:   Y 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:975] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX 970, pci bus id: 0000:01:00.0)
+  192/28709 [..............................] - ETA: 1276s - loss: 8.5200 - acc: 0.1823I tensorflow/core/common_runtime/gpu/pool_allocator.cc:247] PoolAllocator: After 2502 get requests, put_count=2476 evicted_count=1000 eviction_rate=0.403877 and unsatisfied allocation rate=0.45004
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:259] Raising pool_size_limit_ from 100 to 110
+ 2752/28709 [=>............................] - ETA: 277s - loss: 5.3869 - acc: 0.1897I tensorflow/core/common_runtime/gpu/pool_allocator.cc:247] PoolAllocator: After 4890 get requests, put_count=4897 evicted_count=1000 eviction_rate=0.204207 and unsatisfied allocation rate=0.207771
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:259] Raising pool_size_limit_ from 256 to 281
+28709/28709 [==============================] - 253s - loss: 2.2671 - acc: 0.2416 - val_loss: 1.7989 - val_acc: 0.2544
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 247s - loss: 1.7964 - acc: 0.2576 - val_loss: 1.7946 - val_acc: 0.2547
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 247s - loss: 1.7854 - acc: 0.2616 - val_loss: 1.8004 - val_acc: 0.2555
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 247s - loss: 1.7767 - acc: 0.2678 - val_loss: 1.7683 - val_acc: 0.2792
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.7635 - acc: 0.2758 - val_loss: 1.7630 - val_acc: 0.2717
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.7536 - acc: 0.2817 - val_loss: 1.7515 - val_acc: 0.2803
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.7435 - acc: 0.2900 - val_loss: 1.7341 - val_acc: 0.2987
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.7281 - acc: 0.3014 - val_loss: 1.7365 - val_acc: 0.2867
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.7124 - acc: 0.3109 - val_loss: 1.6985 - val_acc: 0.3218
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.6960 - acc: 0.3227 - val_loss: 1.7159 - val_acc: 0.3282
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.6833 - acc: 0.3294 - val_loss: 1.6862 - val_acc: 0.3282
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.6607 - acc: 0.3383 - val_loss: 1.6942 - val_acc: 0.3327
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.6411 - acc: 0.3531 - val_loss: 1.6419 - val_acc: 0.3447
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.6116 - acc: 0.3682 - val_loss: 1.6032 - val_acc: 0.3706
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.5781 - acc: 0.3841 - val_loss: 1.5689 - val_acc: 0.4012
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.5525 - acc: 0.3990 - val_loss: 1.5581 - val_acc: 0.4018
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.5366 - acc: 0.4033 - val_loss: 1.8365 - val_acc: 0.3600
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.5164 - acc: 0.4098 - val_loss: 1.5458 - val_acc: 0.4037
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.4983 - acc: 0.4211 - val_loss: 1.4951 - val_acc: 0.4280
+EPOCH: 20 of: 200
+EVALUATING
+3584/3589 [============================>.] - ETA: 0s 
+
+mets:  ['loss', 'acc']
+evalResult:  [1.4939644497794073, 0.42323767069356627]
+model saved.
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.4836 - acc: 0.4290 - val_loss: 1.5387 - val_acc: 0.4177
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.4663 - acc: 0.4352 - val_loss: 1.4971 - val_acc: 0.4338
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.4543 - acc: 0.4434 - val_loss: 1.4647 - val_acc: 0.4305
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.4389 - acc: 0.4477 - val_loss: 1.5221 - val_acc: 0.4299
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.4308 - acc: 0.4515 - val_loss: 1.4523 - val_acc: 0.4455
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.4138 - acc: 0.4550 - val_loss: 1.4386 - val_acc: 0.4511
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.4020 - acc: 0.4638 - val_loss: 1.4523 - val_acc: 0.4475
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.3894 - acc: 0.4705 - val_loss: 1.4061 - val_acc: 0.4617
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.3786 - acc: 0.4739 - val_loss: 1.3952 - val_acc: 0.4656
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.3689 - acc: 0.4751 - val_loss: 1.4180 - val_acc: 0.4531
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.3586 - acc: 0.4790 - val_loss: 1.4510 - val_acc: 0.4185
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.3428 - acc: 0.4905 - val_loss: 1.4068 - val_acc: 0.4567
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.3315 - acc: 0.4907 - val_loss: 1.3455 - val_acc: 0.4759
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.3185 - acc: 0.4963 - val_loss: 1.3542 - val_acc: 0.4923
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.3089 - acc: 0.4999 - val_loss: 1.3475 - val_acc: 0.4901
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.2975 - acc: 0.5045 - val_loss: 1.3433 - val_acc: 0.4843
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.2835 - acc: 0.5112 - val_loss: 1.3707 - val_acc: 0.4957
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.2721 - acc: 0.5144 - val_loss: 1.3198 - val_acc: 0.5074
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.2612 - acc: 0.5180 - val_loss: 1.5103 - val_acc: 0.4611
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.2498 - acc: 0.5230 - val_loss: 1.3035 - val_acc: 0.5096
+EPOCH: 40 of: 200
+EVALUATING
+3584/3589 [============================>.] - ETA: 0s 
+
+mets:  ['loss', 'acc']
+evalResult:  [1.3201773092586637, 0.4962385065560887]
+model saved.
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.2383 - acc: 0.5303 - val_loss: 1.3093 - val_acc: 0.4932
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.2242 - acc: 0.5326 - val_loss: 1.2763 - val_acc: 0.5121
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.2136 - acc: 0.5394 - val_loss: 1.3156 - val_acc: 0.5110
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.2013 - acc: 0.5437 - val_loss: 1.2522 - val_acc: 0.5174
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.1898 - acc: 0.5499 - val_loss: 1.2920 - val_acc: 0.5188
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.1806 - acc: 0.5497 - val_loss: 1.3877 - val_acc: 0.5107
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.1676 - acc: 0.5574 - val_loss: 1.3756 - val_acc: 0.4734
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.1546 - acc: 0.5598 - val_loss: 1.2472 - val_acc: 0.5311
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.1452 - acc: 0.5650 - val_loss: 1.3369 - val_acc: 0.5107
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.1350 - acc: 0.5709 - val_loss: 1.2981 - val_acc: 0.5213
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.1201 - acc: 0.5773 - val_loss: 1.2982 - val_acc: 0.5116
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.1133 - acc: 0.5778 - val_loss: 1.3322 - val_acc: 0.5224
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.0969 - acc: 0.5853 - val_loss: 1.2872 - val_acc: 0.5238
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.0833 - acc: 0.5913 - val_loss: 1.2026 - val_acc: 0.5472
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.0669 - acc: 0.5995 - val_loss: 1.2058 - val_acc: 0.5520
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.0614 - acc: 0.6013 - val_loss: 1.1776 - val_acc: 0.5553
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.0446 - acc: 0.6086 - val_loss: 1.2533 - val_acc: 0.5508
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.0357 - acc: 0.6106 - val_loss: 1.3528 - val_acc: 0.5135
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.0199 - acc: 0.6173 - val_loss: 1.3490 - val_acc: 0.4896
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 1.0090 - acc: 0.6214 - val_loss: 1.3538 - val_acc: 0.5274
+EPOCH: 60 of: 200
+EVALUATING
+3584/3589 [============================>.] - ETA: 0s 
+
+mets:  ['loss', 'acc']
+evalResult:  [1.3817812691295535, 0.51212036779877468]
+model saved.
+LR CHANGED: 0.02
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.9396 - acc: 0.6473 - val_loss: 1.1641 - val_acc: 0.5751
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.9200 - acc: 0.6605 - val_loss: 1.1637 - val_acc: 0.5756
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.9144 - acc: 0.6593 - val_loss: 1.1717 - val_acc: 0.5765
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.9117 - acc: 0.6585 - val_loss: 1.1451 - val_acc: 0.5737
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.9032 - acc: 0.6609 - val_loss: 1.1925 - val_acc: 0.5639
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.8948 - acc: 0.6680 - val_loss: 1.1693 - val_acc: 0.5712
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.8913 - acc: 0.6656 - val_loss: 1.1316 - val_acc: 0.5868
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.8868 - acc: 0.6717 - val_loss: 1.1306 - val_acc: 0.5879
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.8764 - acc: 0.6701 - val_loss: 1.1674 - val_acc: 0.5851
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.8738 - acc: 0.6735 - val_loss: 1.1530 - val_acc: 0.5823
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.8718 - acc: 0.6765 - val_loss: 1.2061 - val_acc: 0.5731
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.8611 - acc: 0.6806 - val_loss: 1.1456 - val_acc: 0.5862
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.8541 - acc: 0.6840 - val_loss: 1.1525 - val_acc: 0.5876
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.8510 - acc: 0.6852 - val_loss: 1.1394 - val_acc: 0.5915
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.8435 - acc: 0.6887 - val_loss: 1.1469 - val_acc: 0.5887
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.8365 - acc: 0.6904 - val_loss: 1.1687 - val_acc: 0.5871
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.8273 - acc: 0.6943 - val_loss: 1.2078 - val_acc: 0.5743
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.8261 - acc: 0.6919 - val_loss: 1.2189 - val_acc: 0.5623
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.8217 - acc: 0.6959 - val_loss: 1.1669 - val_acc: 0.5910
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.8195 - acc: 0.6941 - val_loss: 1.2740 - val_acc: 0.5692
+EPOCH: 80 of: 200
+EVALUATING
+3584/3589 [============================>.] - ETA: 0s 
+
+mets:  ['loss', 'acc']
+evalResult:  [1.3081575092182547, 0.56088046810526671]
+model saved.
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.8026 - acc: 0.7036 - val_loss: 1.1568 - val_acc: 0.5910
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.8027 - acc: 0.6987 - val_loss: 1.2346 - val_acc: 0.5768
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.7986 - acc: 0.7035 - val_loss: 1.1716 - val_acc: 0.5887
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.7976 - acc: 0.7022 - val_loss: 1.1507 - val_acc: 0.5879
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.7893 - acc: 0.7082 - val_loss: 1.1766 - val_acc: 0.5921
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.7810 - acc: 0.7096 - val_loss: 1.2055 - val_acc: 0.5840
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.7757 - acc: 0.7120 - val_loss: 1.2038 - val_acc: 0.5918
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.7712 - acc: 0.7146 - val_loss: 1.1773 - val_acc: 0.5918
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.7651 - acc: 0.7132 - val_loss: 1.2166 - val_acc: 0.5734
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.7585 - acc: 0.7201 - val_loss: 1.2434 - val_acc: 0.5676
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.7526 - acc: 0.7210 - val_loss: 1.1872 - val_acc: 0.5862
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.7489 - acc: 0.7212 - val_loss: 1.2240 - val_acc: 0.5860
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.7417 - acc: 0.7263 - val_loss: 1.2895 - val_acc: 0.5726
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.7338 - acc: 0.7261 - val_loss: 1.2066 - val_acc: 0.5929
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.7300 - acc: 0.7301 - val_loss: 1.2157 - val_acc: 0.5913
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.7247 - acc: 0.7338 - val_loss: 1.1805 - val_acc: 0.5946
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.7172 - acc: 0.7344 - val_loss: 1.3717 - val_acc: 0.5642
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.7172 - acc: 0.7319 - val_loss: 1.3103 - val_acc: 0.5645
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.7098 - acc: 0.7398 - val_loss: 1.1955 - val_acc: 0.5904
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.7013 - acc: 0.7394 - val_loss: 1.2056 - val_acc: 0.5954
+EPOCH: 100 of: 200
+EVALUATING
+3584/3589 [============================>.] - ETA: 0s 
+
+mets:  ['loss', 'acc']
+evalResult:  [1.2434266543248862, 0.57648370021164796]
+model saved.
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.6940 - acc: 0.7422 - val_loss: 1.2285 - val_acc: 0.5846
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.6914 - acc: 0.7426 - val_loss: 1.2347 - val_acc: 0.5943
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.6882 - acc: 0.7457 - val_loss: 1.3114 - val_acc: 0.5673
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.6760 - acc: 0.7485 - val_loss: 1.2779 - val_acc: 0.5985
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.6779 - acc: 0.7469 - val_loss: 1.2420 - val_acc: 0.5882
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.6730 - acc: 0.7506 - val_loss: 1.2402 - val_acc: 0.5879
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.6573 - acc: 0.7566 - val_loss: 1.2171 - val_acc: 0.5982
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.6570 - acc: 0.7583 - val_loss: 1.2943 - val_acc: 0.5801
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.6474 - acc: 0.7619 - val_loss: 1.2213 - val_acc: 0.5993
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.6496 - acc: 0.7613 - val_loss: 1.2275 - val_acc: 0.5960
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.6373 - acc: 0.7627 - val_loss: 1.2915 - val_acc: 0.5812
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.6398 - acc: 0.7663 - val_loss: 1.2382 - val_acc: 0.5979
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.6376 - acc: 0.7620 - val_loss: 1.2908 - val_acc: 0.5949
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.6213 - acc: 0.7709 - val_loss: 1.3377 - val_acc: 0.5762
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.6174 - acc: 0.7731 - val_loss: 1.2957 - val_acc: 0.5770
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.6121 - acc: 0.7755 - val_loss: 1.3531 - val_acc: 0.5751
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.6086 - acc: 0.7747 - val_loss: 1.2999 - val_acc: 0.5787
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.5987 - acc: 0.7802 - val_loss: 1.3141 - val_acc: 0.5768
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.5983 - acc: 0.7798 - val_loss: 1.2652 - val_acc: 0.5982
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.5915 - acc: 0.7827 - val_loss: 1.3393 - val_acc: 0.5862
+EPOCH: 120 of: 200
+EVALUATING
+3584/3589 [============================>.] - ETA: 0s 
+
+mets:  ['loss', 'acc']
+evalResult:  [1.4083295535264024, 0.55920869324591937]
+model saved.
+LR CHANGED: 0.004
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.5559 - acc: 0.7939 - val_loss: 1.2613 - val_acc: 0.6004
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.5510 - acc: 0.7983 - val_loss: 1.2297 - val_acc: 0.6027
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+28709/28709 [==============================] - 246s - loss: 0.5395 - acc: 0.8022 - val_loss: 1.2572 - val_acc: 0.6032
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/1
+ 9216/28709 [========>.....................] - ETA: 160s - loss: 0.5260 - acc: 0.8058^CTraceback (most recent call last):
+  File "modelBuildFer.py", line 62, in <module>
+    shuffle=True)
+  File "/usr/local/lib/python3.5/dist-packages/keras/engine/training.py", line 1486, in fit
+    initial_epoch=initial_epoch)
+  File "/usr/local/lib/python3.5/dist-packages/keras/engine/training.py", line 1141, in _fit_loop
+    outs = f(ins_batch)
+  File "/usr/local/lib/python3.5/dist-packages/keras/backend/tensorflow_backend.py", line 2103, in __call__
+    feed_dict=feed_dict)
+  File "/home/skyrei/.local/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 767, in run
+    run_metadata_ptr)
+  File "/home/skyrei/.local/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 965, in _run
+    feed_dict_string, options, run_metadata)
+  File "/home/skyrei/.local/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 1015, in _do_run
+    target_list, options, run_metadata)
+  File "/home/skyrei/.local/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 1022, in _do_call
+    return fn(*args)
+  File "/home/skyrei/.local/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 1004, in _run_fn
+    status, run_metadata)
+KeyboardInterrupt
+Exception ignored in: <bound method BaseSession.__del__ of <tensorflow.python.client.session.Session object at 0x7f8c264cb550>>
+Traceback (most recent call last):
+  File "/home/skyrei/.local/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 582, in __del__
+UnboundLocalError: local variable 'status' referenced before assignment
+

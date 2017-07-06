@@ -77,53 +77,61 @@ def classifyFaceCamFer(modelName='WRN-28-4-Fer-Fin.h5'):
 
 	model = load_model(modelName)
 
-	cam = cv2.VideoCapture(0)
-	while True:
+	cam = cv2.VideoCapture(1) #TODO: auto get correct cam
+	keepRunning = True
+	while keepRunning:
 		ret_val, img = cam.read()
 		grey = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 		cascPath = 'haarcascade_frontalface_default.xml'
 		faceCascade = cv2.CascadeClassifier(cascPath)
 		facesLocs = faceCascade.detectMultiScale(grey, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30), flags=cv2.CASCADE_SCALE_IMAGE)
 		prediction = [[-1, -1, -1, -1, -1, -1]]
+		faceN = 0
 		for (x, y, w, h) in facesLocs:
 			cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
 			face = grey[y:y+h, x:x+w] #TODO: only does last face detected. Problem?. ALSO: img=colour, grey=greyscale
 			face = cv2.resize(face, (48, 48))
 			face = face.astype('float32')
-			face /= 255 #TODO: meanstd norm
-			cv2.imshow('Face', face)
-			face = np.reshape(face, (1, face.shape[0], face.shape[1], 1)) #reshape to 4d tensor
-			#print('shapeCam:', face.shape)
-			prediction = model.predict(face, 1, 1)
+			face /= 255
+			if np.std(face) != 0:
+				face = (face-np.mean(face))**2/np.std(face)
+				faceBig = cv2.resize(face, (face.shape[0]*3, face.shape[1]*3))
+				cv2.imshow('Face'+str(faceN), faceBig)
+				face = np.reshape(face, (1, face.shape[0], face.shape[1], 1)) #reshape to 4d tensor
+				#print('shapeCam:', face.shape)
+				prediction = model.predict(face, 1, 1)
+			else:
+				print('Err: std == 0')
 
-		print(prediction)
-		classification = 'UNINITIALISED'
-		if max(prediction[0]) == -1:
 			classification = 'UNINITIALISED'
-		elif prediction[0].argmax() == 0:
-			classification = 'ANGRY'
-		elif prediction[0].argmax() == 1:
-			classification = 'DISGUST'
-		elif prediction[0].argmax() == 2:
-			classification = 'FEAR'
-		elif prediction[0].argmax() == 3:
-			classification = 'HAPPY'
-		elif prediction[0].argmax() == 4:
-			classification = 'SAD'
-		elif prediction[0].argmax() == 5:
-			classification = 'SUPRISE'
-		elif prediction[0].argmax() == 6:
-			classification = 'NEUTRAL'
+			if max(prediction[0]) == -1:
+				classification = 'UNINITIALISED'
+			elif prediction[0].argmax() == 0:
+				classification = 'ANGRY'
+			elif prediction[0].argmax() == 1:
+				classification = 'DISGUST'
+			elif prediction[0].argmax() == 2:
+				classification = 'FEAR'
+			elif prediction[0].argmax() == 3:
+				classification = 'HAPPY'
+			elif prediction[0].argmax() == 4:
+				classification = 'SAD'
+			elif prediction[0].argmax() == 5:
+				classification = 'SUPRISE'
+			elif prediction[0].argmax() == 6:
+				classification = 'NEUTRAL'
+			print('FaceN:', faceN, prediction, classification)
+			faceN += 1
+			cv2.putText(img, classification, (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1, 0xffff00)
 
-		cv2.putText(img, classification, (20, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, 0xffff00)
 		cv2.imshow('mywebcam', img)
 
 		if cv2.waitKey(40) == 27:
-			break  # esc to quit
+			keepRunning = False  # esc to quit
 	cv2.destroyAllWindows()
 
 	del model
 
-ferEg()
-#cifarEg()
-#classifyFaceCamFer(modelName=sys.argv[1])
+# ferEg()
+# cifarEg()
+classifyFaceCamFer(modelName=sys.argv[1])

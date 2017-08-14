@@ -4,7 +4,7 @@ from keras.datasets import cifar10
 from dataParser import readCSV
 import sys, cv2
 import numpy as np
-np.set_printoptions(linewidth=3000)
+np.set_printoptions(linewidth=3000, suppress=True)
 
 
 def ferEg():
@@ -13,21 +13,18 @@ def ferEg():
 		readCSV('datasets/fer2013.csv', 48, 1, ('Training', 'PrivateTest', 'PublicTest'))
 
 	img = testData[0:1]
-	print('shapeFer:', img[0].shape)
-	for i in range(len(trainData)):
-		#cv2.imshow('FerImgChannelsFirst', np.reshape(img[0], img[0].shape[::-1]))
-		cv2.imshow('FerImgChannelsLast', trainData[i])
-		print(trainLabels[i])
+	# for i in range(len(trainData)):
+		# cv2.imshow('FerImgChannelsFirst', np.reshape(img[0], img[0].shape[::-1]))
+		# cv2.imshow('FerImgChannelsLast', trainData[i])
+		# print(trainLabels[i])
 
-		# if testLabels[i][4]==1: #show specific emotion example
-		# if i in [0, 1, 2, 6458, 7629, 10423, 11286, 13148, 13402, 13988, 15894, 22198, 22927, 28601]: #black fer images
+		# if trainLabels[i][6]==1: #show specific emotion example
 		# 	print(i, trainLabels[i])
 		# 	cv2.imshow('ferImg', trainData[i])
-		if cv2.waitKey(0) == 27:
-			sys.exit(0) # esc to quit
+		# 	if cv2.waitKey(0) == 27:
+		# 		sys.exit(0) # esc to quit
 
-	#model = load_model('ferCNNChannelsFirst.h5')
-	model = load_model('ferCNNChannelsLast.h5')
+	model = load_model('ferModel.h5')
 
 	evalResult = model.evaluate(testData, testLabels)
 
@@ -73,28 +70,33 @@ def cifarEg():
 
 	del model
 
-def classifyFaceCamFer(modelName='WRN-28-4-Fer-Fin.h5'):
+#Detect and classify a face from a camera feed.
+#Normalises based on Fer
+#Run: python3 modelLoadEg.py <model.h5>
+def classifyFaceCamFer(modelName):
 
 	model = load_model(modelName)
 
-	cam = cv2.VideoCapture(1) #TODO: auto get correct cam
+	cam = cv2.VideoCapture(0)
 	keepRunning = True
 	while keepRunning:
 		ret_val, img = cam.read()
 		grey = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 		cascPath = 'haarcascade_frontalface_default.xml'
 		faceCascade = cv2.CascadeClassifier(cascPath)
-		facesLocs = faceCascade.detectMultiScale(grey, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30), flags=cv2.CASCADE_SCALE_IMAGE)
+		facesLocs = faceCascade.detectMultiScale(grey, scaleFactor=1.1, minNeighbors=4, minSize=(30, 30), flags=cv2.CASCADE_SCALE_IMAGE)
 		prediction = [[-1, -1, -1, -1, -1, -1]]
 		faceN = 0
 		for (x, y, w, h) in facesLocs:
 			cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
-			face = grey[y:y+h, x:x+w] #TODO: only does last face detected. Problem?. ALSO: img=colour, grey=greyscale
+			face = grey[y:y+h, x:x+w]
 			face = cv2.resize(face, (48, 48))
 			face = face.astype('float32')
 			face /= 255
 			if np.std(face) != 0:
-				face = (face-np.mean(face))**2/np.std(face)
+				#Normalise. ferMean: 0.507566, ferStd: 0.255003
+				face = (face-0.507566)**2/0.255003
+
 				faceBig = cv2.resize(face, (face.shape[0]*3, face.shape[1]*3))
 				cv2.imshow('Face'+str(faceN), faceBig)
 				face = np.reshape(face, (1, face.shape[0], face.shape[1], 1)) #reshape to 4d tensor
@@ -120,7 +122,7 @@ def classifyFaceCamFer(modelName='WRN-28-4-Fer-Fin.h5'):
 				classification = 'SUPRISE'
 			elif prediction[0].argmax() == 6:
 				classification = 'NEUTRAL'
-			print('FaceN:', faceN, prediction, classification)
+			print('FaceN:', faceN, classification, '\t', prediction)
 			faceN += 1
 			cv2.putText(img, classification, (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1, 0xffff00)
 
@@ -132,6 +134,6 @@ def classifyFaceCamFer(modelName='WRN-28-4-Fer-Fin.h5'):
 
 	del model
 
-# ferEg()
+# ferEg(sys.argv[1])
 # cifarEg()
-classifyFaceCamFer(modelName=sys.argv[1])
+classifyFaceCamFer(sys.argv[1])
